@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriTrade Pro | Agricultural Marketplace for Farmers, Buyers & Industrialists</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --secondary: #1b5e20;
+            --accent: #8bc34a;
+            --light: #f1f8e9;
+            --dark: #1b5e20;
+            --earth: #795548;
+            --sun: #ff9800;
+            --sky: #4fc3f7;
+            --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: #f9fbe7;
+            color: #333;
+            line-height: 1.6;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f1f8e9"/><path d="M0 50 Q25 30 50 50 T100 50 L100 100 L0 100 Z" fill="%23c5e1a5" opacity="0.2"/></svg>');
+            background-size: cover;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        nav a:hover, nav a.active {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .call-btn {
+            background: #ffffff;
+            color: var(--primary);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .call-btn:hover {
+            transform: scale(1.1);
+            background: var(--accent);
+            color: white;
+        }
+
+        .section {
+            padding: 4rem 0;
+            border-bottom: 1px solid rgba(139, 195, 74, 0.3);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 0.8rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            color: var(--earth);
+            max-width: 800px;
+            margin: 1.5rem auto 0;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .grid {
+            display: grid;
+            gap: 1.8rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: 1px solid #e8f5e9;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.2rem 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-body {
+            padding: 1.8rem;
+        }
+
+        .card-body h3 {
+            color: var(--secondary);
+            margin-bottom: 1.2rem;
+            font-size: 1.4rem;
+        }
+
+        .card-body ul {
+            padding-left: 1.5rem;
+            margin: 1.2rem 0;
+        }
+
+        .card-body li {
+            margin-bottom: 0.8rem;
+            line-height: 1.7;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .card-body li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .icon-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: rgba(139, 195, 74, 0.15);
+            border-radius: 50%;
+            margin-bottom: 1.2rem;
+        }
+
+        .icon-box i {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.8rem;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #e8f5e9;
+        }
+
+        .stat-card i {
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+        }
+
+        .stat-card h3 {
+            font-size: 2.4rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            color: var(--earth);
+            font-size: 1.1rem;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: var(--light);
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 1.2rem 0;
+        }
+
+        .progress {
+            height: 100%;
+            border-radius: 5px;
+        }
+
+        .agri-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .agri-category {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: 1px solid #e8f5e9;
+            text-align: center;
+            padding: 2rem 1.5rem;
+        }
+
+        .agri-category:hover {
+            transform: scale(1.03);
+        }
+
+        .agri-category i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+        }
+
+        .agri-category h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .agri-category p {
+            color: var(--earth);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .product-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: 1px solid #e8f5e9;
+        }
+
+        .product-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .product-details {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-type {
+            display: inline-block;
+            background: rgba(139, 195, 74, 0.2);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .product-description {
+            color: var(--earth);
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .user-pathway {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .pathway-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #e8f5e9;
+            transition: var(--transition);
+        }
+
+        .pathway-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .pathway-card i {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .pathway-card h3 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 1.2rem;
+        }
+
+        .pathway-card ul {
+            text-align: left;
+            margin-top: 1.5rem;
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            max-width: 150px;
+            text-align: center;
+        }
+
+        .badge-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(139, 195, 74, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .badge-icon i {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .mobile-gestures {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .gesture-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.8rem;
+            width: 220px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            border: 1px solid #e8f5e9;
+        }
+
+        .gesture-icon {
+            font-size: 2.8rem;
+            margin-bottom: 1.2rem;
+            color: var(--primary);
+        }
+
+        footer {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            color: var(--accent);
+            margin-bottom: 1.8rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+            font-size: 1.4rem;
+        }
+
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-column ul li a {
+            color: #e8f5e9;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #c8e6c9;
+            font-size: 1rem;
+        }
+
+        .weather-banner {
+            background: linear-gradient(135deg, #4fc3f7, #29b6f6);
+            color: white;
+            padding: 1.2rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .seasonal-offer {
+            background: linear-gradient(135deg, var(--accent), #9ccc65);
+            color: var(--dark);
+            padding: 1.2rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .role-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .farmer-badge {
+            background: rgba(139, 195, 74, 0.2);
+            color: #33691e;
+        }
+
+        .buyer-badge {
+            background: rgba(79, 195, 247, 0.2);
+            color: #01579b;
+        }
+
+        .industrial-badge {
+            background: rgba(255, 152, 0, 0.2);
+            color: #e65100;
+        }
+        
+        .search-bar {
+            flex-grow: 1;
+            margin: 0 1.5rem;
+            max-width: 500px;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 0.7rem 1rem 0.7rem 3rem;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.15);
+            color: white;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .search-bar input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .search-bar input:focus {
+            outline: none;
+            background: rgba(255,255,255,0.25);
+            border-color: rgba(255,255,255,0.5);
+        }
+        
+        .search-bar i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .stats-highlight {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat-highlight {
+            text-align: center;
+            min-width: 150px;
+        }
+        
+        .stat-highlight .number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+        
+        .stat-highlight .label {
+            color: var(--earth);
+            font-size: 1.1rem;
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .hero-text {
+            padding: 1rem;
+        }
+        
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero-stats {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 90%;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .app-download {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .app-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--dark);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .app-btn:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-bar {
+                margin: 1rem 0;
+                order: 3;
+                width: 100%;
+                max-width: 100%;
+            }
+            
+            .header-content {
+                flex-wrap: wrap;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                margin: 1rem 0;
+            }
+            
+            .user-actions {
+                margin-left: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .weather-banner, .seasonal-offer {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .weather-banner button, .seasonal-offer button {
+                margin-top: 1rem;
+                width: 100%;
+            }
+            
+            .stats-highlight {
+                gap: 1.5rem;
+            }
+            
+            .stat-highlight {
+                min-width: 120px;
+            }
+            
+            .footer-content {
+                gap: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header-content {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .user-actions {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            .hero-stats > div {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .app-download {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-tractor"></i>
+                    <span>AgriTrade Pro</span>
+                </div>
+                
+                <div class="search-bar">
+                    <div style="position: relative;">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search crops, equipment, seeds...">
+                    </div>
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li><a href="#hero" class="active"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#categories"><i class="fas fa-seedling"></i> Products</a></li>
+                        <li><a href="#pathways"><i class="fas fa-users"></i> For Farmers</a></li>
+                        <li><a href="#pathways"><i class="fas fa-industry"></i> For Buyers</a></li>
+                        <li><a href="#trust"><i class="fas fa-handshake"></i> About Us</a></li>
+                    </ul>
+                </nav>
+                <div class="user-actions">
+                    <a href="tel:+918001234567" class="call-btn">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                    <button class="btn btn-outline"><i class="fas fa-sign-in-alt"></i> Login</button>
+                    <button class="btn btn-primary"><i class="fas fa-user-plus"></i> Register</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="section" style="padding-top: 2rem; background: linear-gradient(to bottom, #f1f8e9, #f9fbe7);">
+            <div class="container">
+                <div class="weather-banner">
+                    <i class="fas fa-cloud-sun" style="font-size: 2.5rem;"></i>
+                    <div>
+                        <h3>Monsoon Special Offers!</h3>
+                        <p>Get 20% off on waterproof leno bags and crop covers. Protect your harvest this rainy season!</p>
+                    </div>
+                    <button class="btn btn-primary" style="margin-left: auto;">Shop Weather Gear</button>
+                </div>
+                
+                <div class="seasonal-offer">
+                    <i class="fas fa-sun" style="font-size: 2.5rem;"></i>
+                    <div>
+                        <h3>Kharif Season Procurement</h3>
+                        <p>Industrial buyers: Pre-book grains at wholesale prices. Farmers: Secure your buyers early!</p>
+                    </div>
+                    <button class="btn btn-primary" style="background: var(--secondary); margin-left: auto;">View Procurement Drive</button>
+                </div>
+                
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 style="font-size: 3rem; color: var(--secondary); line-height: 1.2; margin-bottom: 1.5rem;">
+                            India's Agricultural Marketplace <span style="color: var(--accent); display: block;">Connecting Farmers to Markets</span>
+                        </h1>
+                        <p style="font-size: 1.2rem; color: var(--earth); margin-bottom: 2rem; line-height: 1.8;">
+                            AgriTrade Pro bridges the gap between farmers, industrial processors, and buyers. 
+                            Sell your produce directly, source quality agricultural products, and discover farm 
+                            equipment - all on one trusted platform.
+                        </p>
+                        <div style="display: flex; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap;">
+                            <button class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem;">
+                                <i class="fas fa-store"></i> Sell Your Produce
+                            </button>
+                            <button class="btn btn-outline" style="padding: 1rem 2rem; font-size: 1.1rem; border-color: var(--secondary); color: var(--secondary);">
+                                <i class="fas fa-shopping-cart"></i> Source Products
+                            </button>
+                        </div>
+                        
+                        <div class="stats-highlight">
+                            <div class="stat-highlight">
+                                <div class="number">98%</div>
+                                <div class="label">Fair Price</div>
+                            </div>
+                            <div class="stat-highlight">
+                                <div class="number">24h</div>
+                                <div class="label">Fast Payment</div>
+                            </div>
+                            <div class="stat-highlight">
+                                <div class="number">0%</div>
+                                <div class="label">Commission</div>
+                            </div>
+                            <div class="stat-highlight">
+                                <div class="number">42K+</div>
+                                <div class="label">Farmers</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <!--div class="hero-stats">
+                            <h3 style="color: var(--secondary); margin-bottom: 1rem; text-align: center;">Farmers Earned ₹12.8 Crore Last Season!</h3>
+                            <p style="color: var(--earth); margin-bottom: 1.5rem; text-align: center;">Join 42,000+ farmers selling directly to buyers across India</p>
+                            <div style="background: linear-gradient(to right, var(--accent), #9ccc65); height: 12px; border-radius: 6px; margin: 1.5rem 0;"></div>
+                            <div style="display: flex; justify-content: space-around; text-align: center;">
+                                <div>
+                                    <div style="font-size: 1.2rem; font-weight: 700; color: var(--primary);">₹85 Cr+</div>
+                                    <div style="color: var(--earth); font-size: 0.9rem;">Transactions</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 1.2rem; font-weight: 700; color: var(--primary);">24 States</div>
+                                    <div style="color: var(--earth); font-size: 0.9rem;">Coverage</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 1.2rem; font-weight: 700; color: var(--primary);">95%</div>
+                                    <div style="color: var(--earth); font-size: 0.9rem;">Satisfaction</div>
+                                </div>
+                            </div>
+                            
+                            <div class="app-download">
+                                <a href="#" class="app-btn">
+                                    <i class="fab fa-google-play"></i>
+                                    <div>
+                                        <div style="font-size: 0.8rem;">GET IT ON</div>
+                                        <div>Google Play</div>
+                                    </div>
+                                </a>
+                                <a href="#" class="app-btn">
+                                    <i class="fab fa-apple"></i>
+                                    <div>
+                                        <div style="font-size: 0.8rem;">Download on the</div>
+                                        <div>App Store</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div-->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Categories Section -->
+        <section id="categories" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Agricultural Marketplace</h2>
+                    <p>Discover farm produce, equipment, and packaging solutions for every stage of the agricultural value chain</p>
+                </div>
+                
+                <div class="agri-grid">
+                    <div class="agri-category">
+                        <i class="fas fa-apple-alt"></i>
+                        <h3>Farm Produce</h3>
+                        <p>Fresh fruits, vegetables, grains, and pulses directly from farmers</p>
+                        <button class="btn btn-outline" style="border-color: var(--primary); color: var(--primary);">Browse Produce</button>
+                    </div>
+                    
+                    <div class="agri-category">
+                        <i class="fas fa-tractor"></i>
+                        <h3>Farm Tools & Equipment</h3>
+                        <p>Tractors, harvesters, irrigation systems, and hand tools</p>
+                        <button class="btn btn-outline" style="border-color: var(--primary); color: var(--primary);">View Equipment</button>
+                    </div>
+                    
+                    <div class="agri-category">
+                        <i class="fas fa-box-open"></i>
+                        <h3>Packaging Solutions</h3>
+                        <p>Leno bags, jute sacks, crates, and storage solutions</p>
+                        <button class="btn btn-outline" style="border-color: var(--primary); color: var(--primary);">Explore Packaging</button>
+                    </div>
+                    
+                    <div class="agri-category">
+                        <i class="fas fa-flask"></i>
+                        <h3>Agri Inputs</h3>
+                        <p>Seeds, fertilizers, pesticides, and organic solutions</p>
+                        <button class="btn btn-outline" style="border-color: var(--primary); color: var(--primary);">Shop Inputs</button>
+                    </div>
+                </div>
+                
+                <div class="section-header" style="margin-top: 4rem;">
+                    <h2>Featured Agricultural Products</h2>
+                    <p>Quality products sourced directly from farmers and manufacturers</p>
+                </div>
+                
+                <div class="product-showcase">
+                    <div class="product-card">
+                        <div class="product-img" style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 600\" preserveAspectRatio=\"none\"><rect fill=\"%238bc34a\" width=\"800\" height=\"600\"/><text fill=\"rgba(0,0,0,0.2)\" font-size=\"30\" dy=\"10.5\" font-weight=\"bold\" x=\"50%\" y=\"50%\" text-anchor=\"middle\">LENO BAGS</text></svg>');"></div>
+                        <div class="product-details">
+                            <div class="product-type farmer-badge">Packaging</div>
+                            <h3 class="product-title">Premium Leno Bags</h3>
+                            <p class="product-description">Breathable 50kg capacity bags for grain storage. UV treated for longer life.</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-weight: 700; color: var(--primary);">₹18/bag</span>
+                                <button class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-img" style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 600\" preserveAspectRatio=\"none\"><rect fill=\"%23ff9800\" width=\"800\" height=\"600\"/><text fill=\"rgba(0,0,0,0.2)\" font-size=\"30\" dy=\"10.5\" font-weight=\"bold\" x=\"50%\" y=\"50%\" text-anchor=\"middle\">BASMATI RICE</text></svg>');"></div>
+                        <div class="product-details">
+                            <div class="product-type farmer-badge">Farm Produce</div>
+                            <h3 class="product-title">Premium Basmati Rice</h3>
+                            <p class="product-description">Direct from Punjab farms. 1121 variety with 7.5mm+ grain length.</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-weight: 700; color: var(--primary);">₹85/kg</span>
+                                <button class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-img" style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 600\" preserveAspectRatio=\"none\"><rect fill=\"%234fc3f7\" width=\"800\" height=\"600\"/><text fill=\"rgba(0,0,0,0.2)\" font-size=\"30\" dy=\"10.5\" font-weight=\"bold\" x=\"50%\" y=\"50%\" text-anchor=\"middle\">DRIP SYSTEM</text></svg>');"></div>
+                        <div class="product-details">
+                            <div class="product-type farmer-badge">Irrigation</div>
+                            <h3 class="product-title">Smart Drip Irrigation Kit</h3>
+                            <p class="product-description">Water-efficient system with pressure regulator and auto-timer. Covers 1 acre.</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-weight: 700; color: var(--primary);">₹12,499/kit</span>
+                                <button class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-img" style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 600\" preserveAspectRatio=\"none\"><rect fill=\"%23795548\" width=\"800\" height=\"600\"/><text fill=\"rgba(0,0,0,0.2)\" font-size=\"30\" dy=\"10.5\" font-weight=\"bold\" x=\"50%\" y=\"50%\" text-anchor=\"middle\">ORGANIC MANURE</text></svg>');"></div>
+                        <div class="product-details">
+                            <div class="product-type farmer-badge">Agri Inputs</div>
+                            <h3 class="product-title">Vermicompost Organic Manure</h3>
+                            <p class="product-description">Certified organic fertilizer. 50kg bags. Improves soil fertility.</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="font-weight: 700; color: var(--primary);">₹350/bag</span>
+                                <button class="btn btn-primary">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Pathways Section -->
+        <section id="pathways" class="section" style="background: var(--light);">
+            <div class="container">
+                <div class="section-header">
+                    <h2>How AgriTrade Pro Works</h2>
+                    <p>Tailored solutions for every stakeholder in the agricultural value chain</p>
+                </div>
+                
+                <div class="user-pathway">
+                    <div class="pathway-card">
+                        <i class="fas fa-user-tie"></i>
+                        <h3>For Farmers</h3>
+                        <ul>
+                            <li>Create digital storefront for your produce</li>
+                            <li>Get fair price with no middlemen</li>
+                            <li>Access weather-based advisory</li>
+                            <li>Secure payment within 24 hours</li>
+                            <li>Logistics support for delivery</li>
+                        </ul>
+                        <button class="btn btn-primary" style="margin-top: 1.5rem;">Start Selling</button>
+                    </div>
+                    
+                    <div class="pathway-card">
+                        <i class="fas fa-warehouse"></i>
+                        <h3>For Buyers & Processors</h3>
+                        <ul>
+                            <li>Source directly from verified farms</li>
+                            <li>Bulk procurement programs</li>
+                            <li>Quality assurance guarantee</li>
+                            <li>Logistics coordination</li>
+                            <li>Seasonal price forecasting</li>
+                        </ul>
+                        <button class="btn btn-primary" style="margin-top: 1.5rem;">Source Products</button>
+                    </div>
+                    
+                    <div class="pathway-card">
+                        <i class="fas fa-industry"></i>
+                        <h3>For Industrialists</h3>
+                        <ul>
+                            <li>Seasonal procurement drives</li>
+                            <li>Contract farming opportunities</li>
+                            <li>Equipment leasing programs</li>
+                            <li>Export facilitation</li>
+                            <li>Customized supply solutions</li>
+                        </ul>
+                        <button class="btn btn-primary" style="margin-top: 1.5rem;">Industrial Solutions</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Section -->
+        <section id="trust" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Why Farmers Trust AgriTrade Pro</h2>
+                    <p>Our platform is built on transparency, fairness, and efficiency</p>
+                </div>
+                
+                <div class="trust-badges">
+                    <div class="badge">
+                        <div class="badge-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <span>Secure Payments</span>
+                    </div>
+                    
+                    <div class="badge">
+                        <div class="badge-icon">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <span>Fair Pricing</span>
+                    </div>
+                    
+                    <div class="badge">
+                        <div class="badge-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <span>Logistics Support</span>
+                    </div>
+                    
+                    <div class="badge">
+                        <div class="badge-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <span>24/7 Support</span>
+                    </div>
+                    
+                    <div class="badge">
+                        <div class="badge-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <span>Verified Partners</span>
+                    </div>
+                </div>
+                
+                <div class="section-header" style="margin-top: 4rem;">
+                    <h2>Download Our Mobile App</h2>
+                    <p>Access the marketplace anytime, anywhere with our dedicated mobile application</p>
+                </div>
+                
+                <div class="mobile-gestures">
+                    <div class="gesture-card">
+                        <div class="gesture-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Quick Listing</h3>
+                        <p>List your produce in under 60 seconds</p>
+                    </div>
+                    
+                    <div class="gesture-card">
+                        <div class="gesture-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h3>Live Tracking</h3>
+                        <p>Track your shipments in real-time</p>
+                    </div>
+                    
+                    <div class="gesture-card">
+                        <div class="gesture-icon">
+                            <i class="fas fa-rupee-sign"></i>
+                        </div>
+                        <h3>Instant Payments</h3>
+                        <p>Receive payments directly to your bank</p>
+                    </div>
+                    
+                    <div class="gesture-card">
+                        <div class="gesture-icon">
+                            <i class="fas fa-cloud-sun"></i>
+                        </div>
+                        <h3>Weather Alerts</h3>
+                        <p>Get farm-specific weather forecasts</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>AgriTrade Pro</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-info-circle"></i> About Us</a></li>
+                        <li><a href="#"><i class="fas fa-bullhorn"></i> How It Works</a></li>
+                        <li><a href="#"><i class="fas fa-newspaper"></i> Blog & News</a></li>
+                        <li><a href="#"><i class="fas fa-briefcase"></i> Careers</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>For Farmers</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-store"></i> Sell Produce</a></li>
+                        <li><a href="#"><i class="fas fa-tools"></i> Equipment Rental</a></li>
+                        <li><a href="#"><i class="fas fa-cloud-sun"></i> Weather Advisory</a></li>
+                        <li><a href="#"><i class="fas fa-book"></i> Farming Resources</a></li>
+                        <li><a href="#"><i class="fas fa-hands-helping"></i> Farmer Support</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>For Buyers</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-shopping-cart"></i> Source Products</a></li>
+                        <li><a href="#"><i class="fas fa-boxes"></i> Bulk Procurement</a></li>
+                        <li><a href="#"><i class="fas fa-file-contract"></i> Contract Farming</a></li>
+                        <li><a href="#"><i class="fas fa-truck-loading"></i> Logistics</a></li>
+                        <li><a href="#"><i class="fas fa-chart-line"></i> Market Trends</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Connect With Us</h3>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-facebook"></i> Facebook</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Language</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-language"></i> English</a></li>
+                        <li><a href="#"><i class="fas fa-language"></i> हिंदी</a></li>
+                        <li><a href="#"><i class="fas fa-language"></i> తెలుగు</a></li>
+                        <li><a href="#"><i class="fas fa-language"></i> मराठी</a></li>
+                        <li><a href="#"><i class="fas fa-language"></i> বাংলা</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 AgriTrade Pro. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color: #f44336;"></i> for Indian Farmers</p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+                    <a href="#" style="color: #c8e6c9; text-decoration: none; margin: 0 10px;">Privacy Policy</a> | 
+                    <a href="#" style="color: #c8e6c9; text-decoration: none; margin: 0 10px;">Terms of Service</a> | 
+                    <a href="#" style="color: #c8e6c9; text-decoration: none; margin: 0 10px;">FAQ</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Simple JavaScript for interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click effect to buttons
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                });
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Weather banner animation
+            const weatherBanner = document.querySelector('.weather-banner');
+            if(weatherBanner) {
+                setInterval(() => {
+                    weatherBanner.style.boxShadow = '0 5px 15px rgba(79, 195, 247, 0.4)';
+                    setTimeout(() => {
+                        weatherBanner.style.boxShadow = '';
+                    }, 1000);
+                }, 5000);
+            }
+        });
+    </script>
+</body>
+</html>
